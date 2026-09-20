@@ -5,6 +5,7 @@ import time
 from pathlib import Path
 
 from .browser import Browser, StalePage
+from .core.decision import Decision
 from .model import action_space, choose, field_context, field_text
 from .questions import MAX_STEPS
 
@@ -75,9 +76,12 @@ class Agent:
             if len(state["decisions"]) >= MAX_STEPS * 2:
                 raise ValueError("Reached the demo's model-call budget")
             state["decision"] = choose(state["page"], state["goal"], state["history"])
+            record = Decision(state["page"], state["decision"].get("raw_answers", {}))
             state["decisions"].append(
                 {
                     **state["decision"],
+                    "decision_id": record.decision_id,
+                    "state_hash": record.state_hash,
                     "fingerprint": state["page"]["fingerprint"],
                     "elapsed_ms": round((time.perf_counter() - state["started_at"]) * 1000),
                 }
