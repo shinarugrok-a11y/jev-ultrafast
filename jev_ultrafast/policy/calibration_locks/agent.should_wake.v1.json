@@ -1,0 +1,9 @@
+{
+  "question_id": "agent.should_wake.v1",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.wake.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.68, "fallback": false},
+  "metrics": {"brier": 0.14, "error_rate": 0.10, "n_labeled": 8},
+  "fixtures": "jev_ultrafast/evals/agent_wake/should_wake.v1.jsonl",
+  "notes": "WakeGate: sleeping agents stay down unless this lock accepts."
+}

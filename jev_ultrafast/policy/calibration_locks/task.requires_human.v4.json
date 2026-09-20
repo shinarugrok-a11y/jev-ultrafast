@@ -1,0 +1,9 @@
+{
+  "question_id": "task.requires_human.v4",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.routing.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.70, "fallback": false},
+  "metrics": {"brier": 0.16, "error_rate": 0.14, "n_labeled": 6},
+  "fixtures": "jev_ultrafast/evals/routing/requires_human.v4.jsonl",
+  "notes": "Skill/ambiguity judgment only. Delete/deploy/money/credentials/release still require a human regardless of this noul."
+}

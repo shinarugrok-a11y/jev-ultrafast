@@ -1,0 +1,8 @@
+{
+  "question_id": "task.requires_browser.v1",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.routing.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.80, "fallback": false},
+  "metrics": {"brier": 0.09, "error_rate": 0.06, "n_labeled": 6},
+  "fixtures": "jev_ultrafast/evals/routing/requires_browser.v1.jsonl"
+}

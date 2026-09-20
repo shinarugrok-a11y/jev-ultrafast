@@ -1,0 +1,8 @@
+{
+  "question_id": "relay.needs_reply.v1",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.relay.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.72, "fallback": false},
+  "metrics": {"brier": 0.11, "error_rate": 0.08, "n_labeled": 8},
+  "fixtures": "jev_ultrafast/evals/relay/needs_reply.v1.jsonl"
+}

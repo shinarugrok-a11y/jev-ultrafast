@@ -1,0 +1,9 @@
+{
+  "question_id": "task.requires_generation.v1",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.routing.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.75, "fallback": false},
+  "metrics": {"brier": 0.10, "error_rate": 0.08, "n_labeled": 6},
+  "fixtures": "jev_ultrafast/evals/routing/requires_generation.v1.jsonl",
+  "notes": "jev-use: escalate generation-shaped work to Kimi, not to Jev."
+}

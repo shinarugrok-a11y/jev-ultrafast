@@ -1,0 +1,9 @@
+{
+  "question_id": "completion.claim_supported.v3",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.completion.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.90, "fallback": false},
+  "metrics": {"brier": 0.08, "error_rate": 0.07, "n_labeled": 8},
+  "fixtures": "jev_ultrafast/evals/completion/claim_supported.v3.jsonl",
+  "notes": "Jev may say the claim looks supported. Jev must not set DONE. Evidence still has to close the task."
+}

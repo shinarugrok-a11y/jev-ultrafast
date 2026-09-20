@@ -1,0 +1,8 @@
+{
+  "question_id": "task.human_review_recommended.v1",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.routing.v1",
+  "threshold": {"kind": "noul", "min_noul": 0.60, "fallback": false},
+  "metrics": {"brier": 0.17, "error_rate": 0.13, "n_labeled": 6},
+  "fixtures": "jev_ultrafast/evals/routing/human_review.v1.jsonl"
+}

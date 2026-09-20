@@ -1,0 +1,8 @@
+{"id": "tests-and-file", "state": {"claim": "fixed selector", "receipts": ["file", "test"]}, "label": 1}
+{"id": "done-only", "state": {"claim": "DONE", "receipts": []}, "label": 0}
+{"id": "visual-missing-tests", "state": {"claim": "it works", "receipts": ["visual"]}, "label": 0}
+{"id": "contradiction", "state": {"claim": "all tests pass", "receipts": ["file", "test"], "test_failed": true}, "label": 0}
+{"id": "full-chain", "state": {"claim": "selector opens worlds", "receipts": ["file", "test", "visual"]}, "label": 1}
+{"id": "transport-is-not-proof", "state": {"claim": "sent the fix", "receipts": ["transport", "ack"]}, "label": 0}
+{"id": "human-deploy", "state": {"claim": "deployed", "receipts": ["file", "test"], "action_kind": "deploy"}, "label": 0}
+{"id": "supported", "state": {"claim": "null check added", "receipts": ["file", "test"]}, "label": 1}

@@ -1,0 +1,8 @@
+{"id": "useful-explore", "state": {"goal": "Diagnose the selector crash.", "sleeping_agents": ["kimi_explore"]}, "label": 1}
+{"id": "already-running", "state": {"goal": "Diagnose the selector crash.", "sleeping_agents": [], "active": ["kimi_explore"]}, "label": 0}
+{"id": "tiny-ack", "state": {"goal": "ACK", "sleeping_agents": ["grok"]}, "label": 0}
+{"id": "visual", "state": {"goal": "Show the broken dropdown.", "sleeping_agents": ["pepper"]}, "label": 1}
+{"id": "duplicate", "state": {"goal": "Fix selector", "prior_ids": ["done-1"], "sleeping_agents": ["kimi_coder"]}, "label": 0}
+{"id": "plan", "state": {"goal": "Propose a bounded patch after explore.", "sleeping_agents": ["kimi_plan"]}, "label": 1}
+{"id": "park", "state": {"goal": "Wait for the human.", "sleeping_agents": ["cursor"]}, "label": 0}
+{"id": "tests", "state": {"goal": "Run the local pytest suite.", "sleeping_agents": ["kimi_coder"]}, "label": 1}

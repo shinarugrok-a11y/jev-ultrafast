@@ -1,0 +1,8 @@
+{"id": "hello", "state": {"packet": {"packet_id": "p1", "identity": "hexturtle", "text": "Status?"}}, "label": 1}
+{"id": "ack-only", "state": {"packet": {"packet_id": "p2", "identity": "system", "text": "ACK 204"}}, "label": 0}
+{"id": "fix-request", "state": {"packet": {"packet_id": "p3", "identity": "hexturtle", "text": "The Chrono Maps world selector is broken."}}, "label": 1}
+{"id": "duplicate-id", "state": {"packet": {"packet_id": "p3", "identity": "hexturtle", "text": "The Chrono Maps world selector is broken.", "prior_ids": ["p3"]}}, "label": 0}
+{"id": "hold", "state": {"packet": {"packet_id": "p4", "identity": "beowulf", "text": "Parking until evidence arrives."}}, "label": 0}
+{"id": "question", "state": {"packet": {"packet_id": "p5", "identity": "hexturtle", "text": "Did the tests pass?"}}, "label": 1}
+{"id": "noise", "state": {"packet": {"packet_id": "p6", "identity": "relay", "text": ""}}, "label": 0}
+{"id": "thanks", "state": {"packet": {"packet_id": "p7", "identity": "hexturtle", "text": "Thanks, that receipt is enough."}}, "label": 0}
