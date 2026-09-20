@@ -1,0 +1,6 @@
+{"id": "ambiguous-goal", "state": {"goal": "Do the right thing."}, "label": 1}
+{"id": "routine-test", "state": {"goal": "Run pytest."}, "label": 0}
+{"id": "public-pr", "state": {"goal": "Open a PR on the public fork."}, "label": 1}
+{"id": "delete", "state": {"goal": "Delete stale branches.", "action_kind": "delete"}, "label": 1}
+{"id": "explore", "state": {"goal": "List the files that import WorldSelector."}, "label": 0}
+{"id": "money", "state": {"goal": "Refund the customer.", "action_kind": "money"}, "label": 1}

@@ -1,0 +1,6 @@
+{"id": "compose-text", "state": {"goal": "Write the commit message and the patch."}, "label": 1}
+{"id": "click-button", "state": {"goal": "Click Save if it is visible."}, "label": 0}
+{"id": "plan", "state": {"goal": "Draft an approach for the selector bug."}, "label": 1}
+{"id": "route", "state": {"goal": "Classify this packet."}, "label": 0}
+{"id": "field-value", "state": {"goal": "Type the city name into Where from?"}, "label": 1}
+{"id": "wait", "state": {"goal": "Wait for the page to finish loading."}, "label": 0}

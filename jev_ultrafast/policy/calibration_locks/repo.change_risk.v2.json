@@ -1,0 +1,8 @@
+{
+  "question_id": "repo.change_risk.v2",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.repo.v1",
+  "threshold": {"kind": "score", "min_score": 3.0, "fallback": "review"},
+  "metrics": {"brier": 0.21, "error_rate": 0.15, "n_labeled": 6},
+  "fixtures": "jev_ultrafast/evals/routing/change_risk.v2.jsonl"
+}

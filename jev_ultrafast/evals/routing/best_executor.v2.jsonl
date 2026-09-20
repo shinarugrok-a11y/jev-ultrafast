@@ -1,0 +1,8 @@
+{"id": "chrono-maps", "state": {"goal": "The Chrono Maps world selector is broken. Figure out the problem, fix it, and show me it works."}, "label": "kimi_explore", "notes": "Diagnosis first, then a bounded patch."}
+{"id": "wiki-lookup", "state": {"goal": "What is the capital of France?"}, "label": "deterministic", "notes": "Ordinary code or a known fact. Do not wake a cortex."}
+{"id": "visual-bug", "state": {"goal": "Click through the settings window and confirm the toggle persists."}, "label": "pepper", "notes": "Computer-use verification."}
+{"id": "ambiguous", "state": {"goal": "Handle this."}, "label": "park", "notes": "Too vague; lock should fall back to park when the distribution is flat."}
+{"id": "implement-fix", "state": {"goal": "Apply the one-line patch in src/world_selector.py after explore already found the null check."}, "label": "kimi_coder", "notes": "Generation-shaped implementation."}
+{"id": "lab-rewrite", "state": {"goal": "Refactor the reflex runtime, add adapters, and iterate in the free-reign fork."}, "label": "cursor", "notes": "Cursor experiments; no production push."}
+{"id": "escalation", "state": {"goal": "Adjudicate a novel multi-agent failure that already exhausted explore/plan/coder."}, "label": "grok", "notes": "Escalation-level reasoning, not a tiny judgment."}
+{"id": "duplicate", "state": {"goal": "Fix Chrono Maps world selector", "prior_ids": ["chrono-maps"]}, "label": "park", "notes": "Likely duplicate work."}

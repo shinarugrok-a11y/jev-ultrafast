@@ -1,0 +1,6 @@
+{"id": "comment", "state": {"files": ["readme.md"], "summary": "typo"}, "label": 0}
+{"id": "auth", "state": {"files": [".env", "secrets.py"], "summary": "add tokens"}, "label": 5}
+{"id": "small-patch", "state": {"files": ["world_selector.py"], "summary": "null check"}, "label": 2}
+{"id": "schema-migration", "state": {"files": ["migrations/0042.sql"], "summary": "drop column"}, "label": 4}
+{"id": "tests-only", "state": {"files": ["tests/test_selector.py"], "summary": "add coverage"}, "label": 1}
+{"id": "rewrite", "state": {"files": ["jev_ultrafast/agent.py", "jev_ultrafast/browser.py"], "summary": "replace loop"}, "label": 3}

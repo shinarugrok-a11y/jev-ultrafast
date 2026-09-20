@@ -1,0 +1,14 @@
+{
+  "question_id": "routing.best_executor.v2",
+  "model_version": "jev-latest",
+  "policy_version": "beowulf.routing.v1",
+  "threshold": {
+    "kind": "choice_probability",
+    "min_probability": 0.55,
+    "min_confidence": 0.40,
+    "fallback": "park"
+  },
+  "metrics": {"brier": 0.18, "error_rate": 0.12, "n_labeled": 8},
+  "fixtures": "jev_ultrafast/evals/routing/best_executor.v2.jsonl",
+  "notes": "Park when the distribution is too flat. Not a global confidence rule."
+}

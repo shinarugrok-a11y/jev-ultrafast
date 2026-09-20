@@ -2,9 +2,9 @@
 
 # Jev Ultrafast ⚡
 
-**A browser agent with a dynamic, indexed action space.**
+**JEV Ultra Fast — Shinaru Reflex Runtime.** A System One reflex plane with a working browser agent as the regression fixture.
 
-Give it one goal. [TypeSafe's Jev](https://docs.typesafe.ai/introduction) picks an operation and an element. A small LLM writes text only when the operation is `TYPE_TEXT`.
+Give the browser demo one goal. [TypeSafe's Jev](https://docs.typesafe.ai/introduction) picks an operation and an element. A small LLM writes text only when the operation is `TYPE_TEXT`. The same decision contract now also classifies, ranks, and routes Beowulf work — still as **recommendations**, never as authorization.
 
 **Zürich → London on Google Flights in 7.1 seconds.** One natural-language goal, actual text generation, and loading waits included.
 
@@ -12,7 +12,31 @@ Give it one goal. [TypeSafe's Jev](https://docs.typesafe.ai/introduction) picks 
 
 [Watch the MP4](docs/demo.mp4) · [Measurements](docs/performance.md) · [Read the loop](jev_ultrafast/agent.py)
 
-## The action space
+## Reflex plane
+
+Jev judges. Kimi Code thinks and produces (ACP JSON-RPC, not a TUI). Cursor experiments in this public fork. Pepper interacts with the computer. Beowulf routes and reconciles. The relay communicates. COMPSD records. Verification proves. You authorize.
+
+Beowulf owns one local gateway so callers do not hold a TypeSafe key:
+
+```bash
+uv run jev-gateway
+# POST http://127.0.0.1:8767/decision
+```
+
+```python
+from jev_ultrafast import BeowulfOrchestrator, SystemOneGateway
+from jev_ultrafast.providers import ScriptedProvider
+
+gateway = SystemOneGateway(ScriptedProvider(answers))  # tests never call paid APIs
+route = BeowulfOrchestrator(gateway).consider({"goal": "Diagnose the selector crash"})
+# route["kind"] == "recommendation"; delete/deploy/money/credentials/release ignore Jev
+```
+
+Action spaces (`browser`, `relay`, `routing`, `repository`, `computer`) expose legal operations and compatible targets. Application code decides what is executable. A decision is usable once against the `state_hash` it evaluated. Completion uses `completion.claim_supported.v3` plus receipts; Jev cannot set DONE.
+
+Offline routing: `uv run python examples/reflex_offline.py`. Architecture, calibration locks, and the authority split: [docs/reflex.md](docs/reflex.md). Cursor's lab boundary: [cursor/FREE_REIGN.md](cursor/FREE_REIGN.md).
+
+## The browser action space
 
 Every observation produces a new element table:
 
@@ -104,11 +128,13 @@ Every executed target is resolved from an observed node. The executor rechecks p
 
 | File | Job |
 | --- | --- |
-| [agent.py](jev_ultrafast/agent.py) | The complete loop and text-helper handoff |
+| [agent.py](jev_ultrafast/agent.py) | The complete browser loop and text-helper handoff |
 | [snapshot.js](jev_ultrafast/snapshot.js) | Atomic DOM snapshot, indexed controls, freshness guards |
 | [browser.py](jev_ultrafast/browser.py) | Browser connection, current geometry, execution |
-| [model.py](jev_ultrafast/model.py) | Dynamic operation/target heads and text generation |
-| [questions.py](jev_ultrafast/questions.py) | Model instructions |
+| [model.py](jev_ultrafast/model.py) | Browser operation/target heads and text generation |
+| [core/](jev_ultrafast/core) | Decision ledger, catalog questions, calibration locks |
+| [adapters/gateway.py](jev_ultrafast/adapters/gateway.py) | Local System One gateway (recommendations only) |
+| [docs/reflex.md](docs/reflex.md) | Authority split and Beowulf/Kimi/Pepper map |
 | [demo.py](jev_ultrafast/demo.py) | Local inspector |
 
 ## Evidence and limits

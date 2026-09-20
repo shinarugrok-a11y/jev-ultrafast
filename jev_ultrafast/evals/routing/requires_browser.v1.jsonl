@@ -1,0 +1,6 @@
+{"id": "page-task", "state": {"goal": "Open the world selector in the running web build and show the broken dropdown."}, "label": 1}
+{"id": "unit-test", "state": {"goal": "Run pytest on the selector module."}, "label": 0}
+{"id": "screenshot", "state": {"goal": "Verify the UI toggle in a browser."}, "label": 1}
+{"id": "relay-only", "state": {"goal": "Acknowledge the packet and hold."}, "label": 0}
+{"id": "fix-and-show", "state": {"goal": "Fix it and show me it works in the app."}, "label": 1}
+{"id": "read-code", "state": {"goal": "Read world_selector.py and explain the crash."}, "label": 0}
