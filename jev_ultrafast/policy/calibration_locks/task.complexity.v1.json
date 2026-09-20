@@ -1,0 +1,13 @@
+{
+  "question_id": "task.complexity.v1",
+  "model_version": "oracle",
+  "policy_version": "policy.2026-09.v1",
+  "status": "uncalibrated",
+  "fixtures": 8,
+  "threshold": null,
+  "brier": null,
+  "accuracy": null,
+  "mean_absolute_error": null,
+  "measured_at": null,
+  "notes": "dry run with the label oracle; counts only; needs at least 20 labeled fixtures, has 8; scores are consumed as values, not gated by a threshold"
+}

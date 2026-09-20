@@ -1,0 +1,19 @@
+{
+  "policy_version": "policy.2026-09.v1",
+  "comment": "Which probabilities gate behavior and what tripping does. The numeric thresholds live in calibration_locks/, one per question ID. A gate whose question has no calibrated lock always resolves to review.",
+  "flags": {
+    "task.human_review_recommended.v4": {"trip_when": "above", "verdict": "review"},
+    "task.likely_duplicate_work.v1": {"trip_when": "above", "verdict": "park"},
+    "completion.claim_supported.v3": {"trip_when": "below", "verdict": "review"},
+    "agent.should_wake.v1": {"trip_when": "below", "verdict": "park"},
+    "relay.needs_reply.v1": {"trip_when": "below", "verdict": "park", "operations": ["REPLY"]},
+    "repo.change_matches_request.v1": {"trip_when": "below", "verdict": "review"},
+    "repo.tests_cover_change.v1": {"trip_when": "below", "verdict": "review"}
+  },
+  "confidence": {
+    "relay.next_operation.v1": {"verdict": "review"},
+    "routing.best_executor.v2": {"verdict": "review"},
+    "computer.operation.v1": {"verdict": "review"},
+    "repo.change_risk.v2": {"verdict": "review"}
+  }
+}

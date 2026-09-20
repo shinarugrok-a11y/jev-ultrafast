@@ -1,48 +1,19 @@
-"""TypeSafe makes choices; an optional small OpenAI-compatible model writes field values."""
+"""TypeSafe makes choices; an optional small OpenAI-compatible model writes field values.
+
+This is the browser reflex: the original Jev Ultrafast policy, kept intact as the regression fixture. The
+transport lives in ``providers.typesafe`` and the answer contract in ``core.validation``; both names are
+re-exported here so callers and tests keep working unchanged.
+"""
 
 import json
-import math
 import os
 import time
 
-import httpx
-
+from .core.validation import validate_choice
+from .providers.typesafe import ENDPOINT, post_json
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
 
-CLIENT = httpx.Client(http2=True, timeout=25)
-
-
-def post_json(url, key, body):
-    for attempt in range(3):
-        try:
-            response = CLIENT.post(url, json=body, headers={"Authorization": f"Bearer {key}"})
-        except httpx.HTTPError:
-            raise RuntimeError("Model connection failed; no action executed.") from None
-        if response.status_code in {429, 529, 503} and attempt < 2:
-            time.sleep(0.5 * 2**attempt)
-            continue
-        if response.is_error:
-            raise RuntimeError(f"Model provider returned HTTP {response.status_code}; no action executed.")
-        return response.json()
-    raise RuntimeError("Model unavailable")
-
-
-def validate_choice(answer, ids):
-    try:
-        probabilities = answer["probabilities"]
-        numbers = [*probabilities.values(), answer["confidence"]]
-        valid = (
-            answer["choice"] in ids
-            and set(probabilities) == set(ids)
-            and all(type(n) in (int, float) and math.isfinite(n) and 0 <= n <= 1 for n in numbers)
-            and abs(sum(probabilities.values()) - 1) < 0.02
-            and probabilities[answer["choice"]] >= max(probabilities.values()) - 1e-6
-        )
-    except (KeyError, TypeError, ValueError):
-        valid = False
-    if not valid:
-        raise ValueError("Invalid TypeSafe response; no action executed.")
-    return answer
+__all__ = ["action_space", "browser_request", "choose", "field_context", "field_text", "post_json", "validate_choice"]
 
 
 def action_space(actions):
@@ -78,7 +49,8 @@ def action_space(actions):
     return elements, targets, controls
 
 
-def choose(state, goal, history):
+def browser_request(state, goal, history):
+    """Build the one-request operation/target fan-out for an observed page. Pure; no network."""
     elements, targets, controls = action_space(state["actions"])
     labels = {
         "CLICK": "Click an element, button, menu option, autocomplete suggestion, or calendar day.",
@@ -115,15 +87,24 @@ def choose(state, goal, history):
         },
         "questions": questions,
     }
+    return body, operations, targets, controls
+
+
+def choose(state, goal, history):
+    body, operations, targets, controls = browser_request(state, goal, history)
     started = time.perf_counter()
-    result = post_json("https://api.typesafe.ai/v1/systemone", os.environ["TYPESAFE_API_KEY"], body)
+    result = post_json(ENDPOINT, os.environ["TYPESAFE_API_KEY"], body)
+    return resolve_browser_answers(result, body, operations, targets, controls, started)
+
+
+def resolve_browser_answers(result, body, operations, targets, controls, started):
+    """Consume only the target head that matches the selected operation. Unused heads cannot cause an action."""
     operation_answer = validate_choice(result["answers"].get("operation", {}), operations)
     operation = operation_answer["choice"]
     target = None
     target_answer = None
     probabilities = {}
     if operation in targets:
-        # Unused target heads cannot cause an action. Validate the head selected by the operation.
         target_answer = validate_choice(result["answers"].get(operation.lower() + "_target", {}), targets[operation])
         target = target_answer["choice"]
         choice = targets[operation][target]["id"]
