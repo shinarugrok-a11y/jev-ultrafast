@@ -110,6 +110,23 @@ Every executed target is resolved from an observed node. The executor rechecks p
 | [model.py](jev_ultrafast/model.py) | Dynamic operation/target heads and text generation |
 | [questions.py](jev_ultrafast/questions.py) | Model instructions |
 | [demo.py](jev_ultrafast/demo.py) | Local inspector |
+| [core/](jev_ultrafast/core) | Consume-once decisions, validation, calibration registry, ActionSpace |
+| [action_spaces/](jev_ultrafast/action_spaces) | Browser, relay, agent-router, repository, computer domains |
+| [gateway.py](jev_ultrafast/gateway.py) | Beowulf-facing SystemOneGateway: recommendations only |
+| [policy.py](jev_ultrafast/policy.py) | Deterministic authority gates; Jev does not get a vote |
+| [evidence.py](jev_ultrafast/evidence.py) | Receipts, traces, replay; completion stays separate |
+| [adapters/kimi_acp.py](jev_ultrafast/adapters/kimi_acp.py) | Kimi Code ACP frames and fail-open hook receipts |
+
+## Reflex runtime
+
+The browser demo above stays the working regression fixture. The same reflex contract now covers Beowulf routing: one observation snapshot, bounded legal actions, one TypeSafe request per cycle, consume-once decisions bound to the exact state hash, and execution owned by code.
+
+- `SystemOneGateway.decide(state, questions, policy_context)` returns answers, distributions, confidence, model/policy versions, and latency, and logs every decision. It never sends relay messages, declares DONE, approves artifacts, or authorizes operations.
+- `core/calibration.py` registers the initial question set (`routing.best_executor.v2`, `task.class.v1`, complexity/consequence/context scores, generation/browser/write/context/visual/duplicate/wake/reply/review/risk/claim questions). Code owns thresholds; there is no global confidence cutoff.
+- `policy.py` keeps authority deterministic: delete, deploy, money, credential use, and release require a human. Jev may recommend review; it cannot require or grant approval.
+- `adapters/kimi_acp.py` builds ACP JSON-RPC frames (`session/new`, `session/prompt`) for Kimi Code's `explore`/`plan`/`coder` workers over stdio, plus advisory fail-open hook receipts. Beowulf owns transport and dispatch.
+
+Separation: **Jev judges. Kimi produces. Cursor builds. Pepper acts. Beowulf routes. The relay communicates. Verification proves. Humans authorize.**
 
 ## Evidence and limits
 

@@ -1,12 +1,12 @@
 """TypeSafe makes choices; an optional small OpenAI-compatible model writes field values."""
 
 import json
-import math
 import os
 import time
 
 import httpx
 
+from .core.validation import validate_choice
 from .questions import NEXT_ACTION, TARGET, TEXT_VALUE
 
 CLIENT = httpx.Client(http2=True, timeout=25)
@@ -27,22 +27,7 @@ def post_json(url, key, body):
     raise RuntimeError("Model unavailable")
 
 
-def validate_choice(answer, ids):
-    try:
-        probabilities = answer["probabilities"]
-        numbers = [*probabilities.values(), answer["confidence"]]
-        valid = (
-            answer["choice"] in ids
-            and set(probabilities) == set(ids)
-            and all(type(n) in (int, float) and math.isfinite(n) and 0 <= n <= 1 for n in numbers)
-            and abs(sum(probabilities.values()) - 1) < 0.02
-            and probabilities[answer["choice"]] >= max(probabilities.values()) - 1e-6
-        )
-    except (KeyError, TypeError, ValueError):
-        valid = False
-    if not valid:
-        raise ValueError("Invalid TypeSafe response; no action executed.")
-    return answer
+__all__ = ["validate_choice"]
 
 
 def action_space(actions):
