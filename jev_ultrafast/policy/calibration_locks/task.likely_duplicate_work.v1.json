@@ -1,0 +1,13 @@
+{
+  "question_id": "task.likely_duplicate_work.v1",
+  "model_version": "oracle",
+  "policy_version": "policy.2026-09.v1",
+  "status": "uncalibrated",
+  "fixtures": 22,
+  "threshold": null,
+  "brier": null,
+  "accuracy": null,
+  "mean_absolute_error": null,
+  "measured_at": null,
+  "notes": "dry run with the label oracle; counts only"
+}
